@@ -22,6 +22,9 @@ namespace h5{ namespace impl {
 		template<class A> array( const std::array<A,1> l ) : rank(1), data{l[0]} {}
 		template<class A> array( const std::array<A,2> l ) : rank(2), data{l[0],l[1]} {}
 		template<class A> array( const std::array<A,3> l ) : rank(3), data{l[0],l[1],l[2]} {}
+		template<class A> array(const std::array<A, 4> l) : rank(4), data{l[0], l[1], l[2], l[3]} {}
+		template<class A> array(const std::array<A, 5> l) : rank(5), data{l[0], l[1], l[2], l[3], l[4]} {}
+		template<class A> array(const std::array<A, 6> l) : rank(6), data{l[0], l[1], l[2], l[3], l[4]} {}
 		// automatic conversion to std::array means to collapse tail dimensions
 		template<class A>
 		operator const std::array<A,0> () const {
@@ -41,10 +44,28 @@ namespace h5{ namespace impl {
 		}
 		template<class A>
 		operator const std::array<A,3> () const {
-			size_t a,b,c;	a = data[0]; b = data[1]; c = data[2];
+			size_t a,b,c; a = data[0]; b = data[1]; c = data[2];
 			for(int i=3;i<rank;i++) c*=data[i];
 			return {a,b,c};
 		}
+		template<class A>
+        operator const std::array<A,4> () const {
+            size_t a,b,c,d; a = data[0]; b = data[1]; c = data[2]; d = data[3];
+            for(int i=4;i<rank;i++) d*=data[i];
+            return {a,b,c,d};
+        }
+        template<class A>
+        operator const std::array<A,5> () const {
+            size_t a,b,c,d,e; a = data[0]; b = data[1]; c = data[2]; d = data[3]; e = data[4];
+            for(int i=5;i<rank;i++) e*=data[i];
+            return {a,b,c,d,e};
+        }
+        template<class A>
+        operator const std::array<A,6> () const {
+            size_t a,b,c,d,e,f; a = data[0]; b = data[1]; c = data[2]; d = data[3]; e = data[4]; f = data[5];
+            for(int i=6;i<rank;i++) f*=data[i];
+            return {a,b,c,d,e,f};
+        }
 
 		array() : rank(0){};
 		array( array&& arg ) = default;
