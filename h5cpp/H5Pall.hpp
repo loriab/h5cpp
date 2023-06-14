@@ -7,6 +7,8 @@
 #ifndef  H5CPP_PALL_HPP
 #define  H5CPP_PALL_HPP
 
+#include <H5Fpublic.h>
+
 namespace h5 { namespace impl {
 	/* proxy object that gets converted to property_id with restriction that 
 	 * only same class properties may be daisy chained */
@@ -168,7 +170,7 @@ const static h5::file_space_page_strategy strategy_aggr{H5F_FSPACE_STRATEGY_AGGR
 const static h5::file_space_page_strategy strategy_none{H5F_FSPACE_STRATEGY_NONE};
 */
 	#ifdef H5_HAVE_PARALLEL
-		const static h5::file_space_page_strategy strategy_page{H5F_FSPACE_STRATEGY_PAGE};
+//             const static h5::file_space_page_strategy strategy_page{H5F_FSPACE_STRATEGY_PAGE};
 	#endif
 #endif
 
@@ -207,9 +209,9 @@ using mdc_config               = impl::fapl_call< impl::fapl_args<hid_t,H5AC_cac
 using mdc_image_config         = impl::fapl_call< impl::fapl_args<hid_t,H5AC_cache_image_config_t*>,H5Pset_mdc_image_config>;
 using mdc_log_options          = impl::fapl_call< impl::fapl_args<hid_t,hbool_t,const char*,hbool_t>,H5Pset_mdc_log_options>;
 #endif
-#if H5_VERSION_GE(1,14,0) //FIXME: find out why the compile error with valid 1.8.0 version 
-using fapl_direct              = impl::fapl_call<impl::fapl_args<hid_t,size_t,size_t,size_t, H5Pset_fapl_direct>;
-#endif
+// #if H5_VERSION_GE(1, 14, 0) // FIXME: find out why the compile error with valid 1.8.0 version
+// using fapl_direct = impl::fapl_call < impl::fapl_args<hid_t, size_t, size_t, size_t, H5Pset_fapl_direct>;
+// #endif
 //
 namespace flag {
 	using fapl_sec2            = impl::fapl_call< impl::fapl_args<hid_t>,H5Pset_fapl_sec2>;

@@ -22,9 +22,9 @@ namespace h5{ namespace impl {
 		template<class A> array( const std::array<A,1> l ) : rank(1), data{l[0]} {}
 		template<class A> array( const std::array<A,2> l ) : rank(2), data{l[0],l[1]} {}
 		template<class A> array( const std::array<A,3> l ) : rank(3), data{l[0],l[1],l[2]} {}
-		template<class A> array(const std::array<A, 4> l) : rank(4), data{l[0], l[1], l[2], l[3]} {}
-		template<class A> array(const std::array<A, 5> l) : rank(5), data{l[0], l[1], l[2], l[3], l[4]} {}
-		template<class A> array(const std::array<A, 6> l) : rank(6), data{l[0], l[1], l[2], l[3], l[4]} {}
+		template<class A> array( const std::array<A,4> l ) : rank(4), data{l[0],l[1],l[2],l[3]} {}
+		template<class A> array( const std::array<A,5> l ) : rank(5), data{l[0],l[1],l[2],l[3],l[4]} {}
+		template<class A> array( const std::array<A,6> l ) : rank(6), data{l[0],l[1],l[2],l[3],l[4],l[5]} {}
 		// automatic conversion to std::array means to collapse tail dimensions
 		template<class A>
 		operator const std::array<A,0> () const {
