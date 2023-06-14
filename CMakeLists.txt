@@ -19,8 +19,8 @@ add_library(h5cpp INTERFACE)
 set(H5CPP_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
 if(WIN32)
 	set(CMAKE_PREFIX_PATH  "C:/linalg"  "C:/linalg/lib"  "C:/linalg/lib/cmake"  "C:/linalg/share")
-	set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/"
-			"${CMAKE_SOURCE_DIR}/cmake/eigen3"  "${CMAKE_SOURCE_DIR}/cmake/dlib" )
+	set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/"
+			"${PROJECT_SOURCE_DIR}/cmake/eigen3"  "${PROJECT_SOURCE_DIR}/cmake/dlib" )
 	set(ARMADILLO_LIBRARY_DIRS  "C:/linalg/bin")
 
 elseif(UNIX)
@@ -108,23 +108,24 @@ install(FILES     examples/Makefile       DESTINATION "${INSTALL_DIR_EXAMPLES}")
 #generate cmake config and version files
 include(CMakePackageConfigHelpers)
 configure_package_config_file(
-    ${CMAKE_SOURCE_DIR}/cmake/config.cmake.in
-    ${CMAKE_BINARY_DIR}/h5cpp-config.cmake
+    ${PROJECT_SOURCE_DIR}/cmake/config.cmake.in
+    ${PROJECT_BINARY_DIR}/h5cpp-config.cmake
     INSTALL_DESTINATION ${INSTALL_DIR_CMAKE}
 )
 write_basic_package_version_file(
-    ${CMAKE_BINARY_DIR}/h5cpp-config-version.cmake
+    ${PROJECT_BINARY_DIR}/h5cpp-config-version.cmake
     VERSION ${PROJECT_VERSION}
     COMPATIBILITY AnyNewerVersion
 )
 
 export(PACKAGE h5cpp)
 export(EXPORT h5cpp-targets)
+add_library(h5cpp::h5cpp ALIAS h5cpp)
 
 install(EXPORT h5cpp-targets DESTINATION ${INSTALL_DIR_CMAKE})
 install(FILES
-    ${CMAKE_BINARY_DIR}/h5cpp-config.cmake
-    ${CMAKE_BINARY_DIR}/h5cpp-config-version.cmake
+    ${PROJECT_BINARY_DIR}/h5cpp-config.cmake
+    ${PROJECT_BINARY_DIR}/h5cpp-config-version.cmake
     DESTINATION ${INSTALL_DIR_CMAKE}
 )
 
